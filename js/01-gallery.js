@@ -5,6 +5,7 @@ console.log(galleryItems);
 const galleryImagesEl = document.querySelector('.gallery');
 const galleryItemsMarkup = createGalleryMarkup(galleryItems);
 addGallery(galleryItemsMarkup);
+galleryImagesEl.addEventListener('click', onSelectImg);
 
 function createGalleryMarkup(items) {
   return items
@@ -22,6 +23,21 @@ function createGalleryMarkup(items) {
     )
     .join('');
 }
+
 function addGallery(markup) {
   galleryImagesEl.innerHTML = markup;
 }
+
+function onSelectImg(evt) {
+  evt.preventDefault();
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  }
+  const selectedImage = evt.target.dataset.source;
+
+  const instance = basicLightbox.create(
+    `<img src="${selectedImage}" width="800" height="600">`,
+  );
+  instance.show();
+}
+
