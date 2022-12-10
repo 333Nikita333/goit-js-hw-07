@@ -39,5 +39,10 @@ function onSelectImg(evt) {
     `<img src="${selectedImage}" width="800" height="600">`,
   );
   instance.show();
-}
 
+  galleryImagesEl.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+      instance.close();
+    }
+  });
+}
