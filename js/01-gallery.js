@@ -42,7 +42,7 @@ function onSelectImg(evt) {
   );
   instance.show();
 
-  gallery.addEventListener('keydown', evt => {
+  galleryEl.addEventListener('keydown', evt => {
     if (evt.key === 'Escape') {
       instance.close();
     }
