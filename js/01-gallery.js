@@ -1,13 +1,15 @@
+"use strict"
+
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 console.log(galleryItems);
 
-const galleryImagesEl = document.querySelector('.gallery');
-const galleryItemsMarkup = createGalleryMarkup(galleryItems);
+const galleryEl = document.querySelector('.gallery');
+const galleryItemsMarkup = createGalleryItemsMarkup(galleryItems);
 addGallery(galleryItemsMarkup);
-galleryImagesEl.addEventListener('click', onSelectImg);
+galleryEl.addEventListener('click', onSelectImg);
 
-function createGalleryMarkup(items) {
+function createGalleryItemsMarkup(items) {
   return items
     .map(
       item => `<div class="gallery__item">
@@ -25,7 +27,7 @@ function createGalleryMarkup(items) {
 }
 
 function addGallery(markup) {
-  galleryImagesEl.innerHTML = markup;
+  galleryEl.innerHTML = markup;
 }
 
 function onSelectImg(evt) {
@@ -40,7 +42,7 @@ function onSelectImg(evt) {
   );
   instance.show();
 
-  galleryImagesEl.addEventListener('keydown', evt => {
+  gallery.addEventListener('keydown', evt => {
     if (evt.key === 'Escape') {
       instance.close();
     }
