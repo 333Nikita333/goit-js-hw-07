@@ -1,4 +1,4 @@
-"use strict"
+'use strict';
 
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
@@ -35,16 +35,24 @@ function onSelectImg(evt) {
   if (evt.target.nodeName !== 'IMG') {
     return;
   }
-  const selectedImage = evt.target.dataset.source;
+}
 
-  const instance = basicLightbox.create(
-    `<img src="${selectedImage}" width="800" height="600">`,
-  );
-  instance.show();
+const selectedImage = evt.target.dataset.source;
+const instance = basicLightbox.create(
+  `<img src="${selectedImage}" width="800" height="600">`,
+  optionsBasicLightbox,
+);
+const optionsBasicLightbox = {
+  onShow: () => {
+    document.addEventListener('keydown', onKeyEscape);
+  },
+  onClose: () => {
+    document.removeEventListener('keydown', onKeyEscape);
+  },
+};
 
-  galleryEl.addEventListener('keydown', evt => {
-    if (evt.key === 'Escape') {
-      instance.close();
-    }
-  });
+function onKeyEscape(evt) {
+  if (evt.key === 'Escape') {
+    instance.close();
+  }
 }
